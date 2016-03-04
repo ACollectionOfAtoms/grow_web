@@ -7,6 +7,6 @@ from django.template.context import RequestContext
 
 def home(request):
     context = RequestContext(request,
-                            {'user': request.user,
-                             'request': request})
-    return render_to_response('thirdauth/home.html', context_instance=context)
+                             {'user': request.user,
+                              'request': request})
+    return render_to_response('thirdauth/login_form.html', context_instance=context)
