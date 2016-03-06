@@ -4,15 +4,20 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.template.response import TemplateResponse
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+
+
+def index(request):
+    context = {'user': request.user}
+    if request.user and not request.user.is_anonymous():
+        return redirect('/home')
+    else:
+        return TemplateResponse(request, 'thirdauth/login_form.html', context=context)
 
 
 def home(request):
-    context = RequestContext(request,
-                             {'user': request.user,
-                              'request': request})
-    return render_to_response('thirdauth/login_form.html', context_instance=context)
-
-
-def logged_in(request):
-    context = {}
-    return TemplateResponse(request, 'thirdauth/login_form.html', context={})
+    if request.user and not request.user.is_anonymous():
+        return TemplateResponse(request, 'thirdauth/home.html', context={})
+    else:
+        return redirect('/')

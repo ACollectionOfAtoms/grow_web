@@ -19,8 +19,8 @@ from thirdauth import views as thirdauth_views
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', thirdauth_views.home, name='home'),
-    url(r'^logged_in', thirdauth_views.logged_in, name='logged_in'),
+    url(r'^$', thirdauth_views.index, name='home'),
+    url(r'^home', thirdauth_views.home, name='logged_in'),
     url(r'^admin/', include(admin.site.urls)),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth'))
