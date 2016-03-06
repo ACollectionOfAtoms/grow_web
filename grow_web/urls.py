@@ -20,6 +20,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', thirdauth_views.home, name='home'),
+    url(r'^logged_in', thirdauth_views.logged_in, name='logged_in'),
     url(r'^admin/', include(admin.site.urls)),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth'))
